@@ -52,7 +52,7 @@
 
             if (depositAmount < minDeposit)
                 throw new Exception(String.Format(WarningDepositMustBeGreaterThanMinDeposit, 
-                    minDeposit.ToString(account.CurrencyFormat)));
+                    $"{minDeposit:C}"));
 
             decimal newBalance = account.Balance + depositAmount;
             if (newBalance < minBalance)
@@ -70,12 +70,12 @@
 
             if (withdrawalAmount < minWithdrawal)
                 throw new Exception(String.Format(WarningWithdrawalMustBeGreaterThanMinWithdrawal, 
-                    minWithdrawal.ToString(account.CurrencyFormat)));
+                    $"{minWithdrawal:C}"));
 
             decimal newBalance = account.Balance - withdrawalAmount;
             if (newBalance < minBalance)
                 throw new Exception(String.Format(WarningBalanceCannotBeLowerThanMinimum, 
-                    minBalance.ToString(account.CurrencyFormat)));
+                    $"{minBalance:C}"));
 
             account.WithdrawFunds(withdrawalAmount);
         }
@@ -99,12 +99,12 @@
         public string GetAccountSummary(int accountNumber)
         {
             try
-                {
-                    return GetAccount(accountNumber).ToString();
-                }
-                catch (Exception e)
-                {
-                    throw new Exception(WarningAccountNotFound);
+            {
+                return GetAccount(accountNumber).ToString();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(WarningAccountNotFound);
             }
         }
 

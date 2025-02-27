@@ -2,19 +2,16 @@
 {
     internal class Account
     {
-        private const string accountNumberFormat = "D6"; // 6 digits e.g. 000001
-        private const string currencyFormat = "C"; // currency format e.g. 0,00 kr
-        private static int highestAccountNumber = 0;
+        private static int currentHighestAccountNumber = 0;
         
         public int AccountNumber { get; private set; }
         public decimal Balance { get; private set; }
-        public string CurrencyFormat { get { return currencyFormat; } }
-        public string FormattedAccountNumber { get { return AccountNumber.ToString(accountNumberFormat); } }           
-        public string FormattedBalance { get {  return Balance.ToString(currencyFormat); } }
+        public string FormattedAccountNumber { get { return $"{AccountNumber:00000000}";  } } // 6 digits e.g. 000001
+        public string FormattedBalance {  get { return $"{Balance,17:C}"; } } // length 17, currency format
 
         public Account()
         {
-            AccountNumber = ++highestAccountNumber;
+            AccountNumber = ++currentHighestAccountNumber;
             Balance = 0.00M;
         }
 

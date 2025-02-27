@@ -59,10 +59,10 @@
             title = "ToString() innehåller kontonummer och saldo";
             account = new Account();
             account.AddFunds(1234);
-            string accString = account.ToString();
-            string accNo = account.AccountNumber.ToString();
-            string accBal = account.Balance.ToString(account.CurrencyFormat);
-            testHelper.AssertTrue(title, accString.Contains(accNo) && accString.Contains(accBal));
+            string accountString = account.ToString();
+            string accountNum = account.AccountNumber.ToString();
+            string accountBalance = account.Balance.ToString("C");
+            testHelper.AssertTrue(title, accountString.Contains(accountNum) && accountString.Contains(accountBalance));
         }
 
         private void RunBankTests()
